@@ -21,14 +21,10 @@ function Form() {
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         console.log(input);
-        console.log(`humidity is ${humidity}`);
-        console.log(`feel is ${feel}`);
-        console.log(`minTemp is ${minTemp}`);
-        console.log(`maxTemp is ${maxTemp}`);
         getAPI(input);
     }
 
-    const handleClick = (e: { preventDefault: () => void; }) => {
+    const handleClickNotation = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         setIsCelcius(!isCelsius);
     }
@@ -74,12 +70,13 @@ function Form() {
             console.log(data.main.temp - 273.15);
 
             updateMessage(`the temperature in ${data.name}, ${data.sys.country} is `);
-            updateTemp(`${Math.round((data.main.temp - 273.15)).toString()}`);
+            updateTemp(`${Math.round(celsiusConvert(data.main.feels_like)).toString()}`);
 
             updateHumidity(`${data.main.humidity}`);
-            updateFeel(`${Math.round((data.main.feels_like - 273.15)).toString()}`);
-            updateMinTemp(`${Math.round((data.main.temp_min - 273.15)).toString()}`);
-            updateMaxTemp(`${Math.round((data.main.temp_max - 273.15)).toString()}`);
+            updateFeel(`${Math.round(celsiusConvert(data.main.feels_like)).toString()}`);
+            updateMinTemp(`${Math.round(celsiusConvert(data.main.feels_like)).toString()}`);
+            updateMaxTemp(`${Math.round(celsiusConvert(data.main.feels_like)).toString()}`);
+            
             updateWeather(`${data.weather[0].main}`);
 
             return (data.main.temp - 273.15);
@@ -93,7 +90,11 @@ function Form() {
 
     useEffect(() => {
         handleSubmit({ preventDefault: () => { } });
-    })
+    }, []);
+
+    useEffect(() => {
+        
+    }, [isCelsius]);
 
     return (
         <>
@@ -124,7 +125,7 @@ function Form() {
 
             {/* <button>°C / °F</button> */}
 
-            <div onClick={handleClick}>
+            <div onClick={handleClickNotation}>
                 <ToggleButton />
             </div>
             

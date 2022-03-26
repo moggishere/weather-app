@@ -1,9 +1,9 @@
-function celsiusConvert(temp) {
+function celsiusConvert(temp: number) {
     return temp - 273.15;
 }
 
-function fahrenheitConvert() {
-
+function fahrenheitConvert(temp: number) {
+    return 1.8 * (temp - 273.15) + 32;
 }
 
-export default { celsiusConvert, fahrenheitConvert };
+export { celsiusConvert, fahrenheitConvert };

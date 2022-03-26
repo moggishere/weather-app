@@ -11,4 +11,5 @@
 
 .temperature {
     text-align: center;
+    transition: 1s;
 }
