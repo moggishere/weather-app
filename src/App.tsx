@@ -42,7 +42,10 @@ function App() {
     // </div>
 
     <>
-      <Body />
+      <div className='site-body'>
+        <Body />
+      </div>
+
     </>
 
   )

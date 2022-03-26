@@ -1,0 +1,17 @@
+.toggle-button {
+    cursor: pointer;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    margin: 1em;
+    padding: 1em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    border-radius: 1rem;
+}
+
+.highlighted-text {
+    font-weight: bold;
+}

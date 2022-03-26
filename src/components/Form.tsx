@@ -1,16 +1,21 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import './Components.css'
+import ToggleButton from "./ToggleButton";
+import { celsiusConvert, fahrenheitConvert } from './ConvertTemp';
 
 function Form() {
 
-    const [input, setInput] = useState('London');
+    const [input, setInput] = useState('Rio de Janeiro');
 
     const [temp, setTemp] = useState('loading');
     const [humidity, setHumidity] = useState('');
     const [feel, setFeel] = useState('');
     const [minTemp, setMinTemp] = useState('');
     const [maxTemp, setMaxTemp] = useState('');
+    const [weather, setWeather] = useState('');
 
     const [notation, setNotation] = useState('°C');
+    const [isCelsius, setIsCelcius] = useState(true);
     const [message, setMessage] = useState('');
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
@@ -21,6 +26,11 @@ function Form() {
         console.log(`minTemp is ${minTemp}`);
         console.log(`maxTemp is ${maxTemp}`);
         getAPI(input);
+    }
+
+    const handleClick = (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        setIsCelcius(!isCelsius);
     }
 
     function updateMessage(message: string) {
@@ -51,6 +61,10 @@ function Form() {
         setMaxTemp(maxTemp);
     }
 
+    function updateWeather(weather: string) {
+        setWeather(weather);
+    }
+
     async function getAPI(place: string) {
         const apiKey = '95fee964ced32e496e2999d4b411aa78';
 
@@ -66,19 +80,24 @@ function Form() {
             updateFeel(`${Math.round((data.main.feels_like - 273.15)).toString()}`);
             updateMinTemp(`${Math.round((data.main.temp_min - 273.15)).toString()}`);
             updateMaxTemp(`${Math.round((data.main.temp_max - 273.15)).toString()}`);
+            updateWeather(`${data.weather[0].main}`);
 
             return (data.main.temp - 273.15);
         } catch (err) {
-            updateTemp('Error');
+            // updateTemp('Error');
             alert('Error');
             return err;
         }
 
     }
 
+    useEffect(() => {
+        handleSubmit({ preventDefault: () => { } });
+    })
+
     return (
         <>
-            <h3>Weather App</h3>
+            <h1>Weather App</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='city'>city name:</label>
                 <input id='city' type="text" name="city" value={input} onChange={(e: ChangeEvent<HTMLInputElement>) => updateInput(e)} />
@@ -86,13 +105,30 @@ function Form() {
             </form>
 
             <div className='showWeather'>
-                <h3>{message}</h3>
-                <h3>{temp}{notation}</h3>
-                <h3>{humidity}%</h3>
-                <h3>{feel}{notation}</h3>
-                <h3>{minTemp}{notation}</h3>
-                <h3>{maxTemp}{notation}</h3>
+                <span className='temperature'>
+                    <h3>{message}</h3>
+                    <span>
+                        <h3>{weather}</h3>
+                        <h1>{temp}{notation}</h1>
+                        <h3>min {minTemp}{notation} | max {maxTemp}{notation}</h3>
+                    </span>
+
+
+                </span>
+                <span className="temperature">
+                    <h3>feeling {feel}{notation}</h3>
+                    <h3> humidity {humidity}%</h3>
+                </span>
+
             </div>
+
+            {/* <button>°C / °F</button> */}
+
+            <div onClick={handleClick}>
+                <ToggleButton />
+            </div>
+            
+
 
         </>
     )
