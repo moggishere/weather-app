@@ -8,7 +8,7 @@ function ToggleButton() {
     const [fahrenheit, setFahrenheit] = useState('');
 
     useEffect(() => {
-        console.log(`isCelcius is ${isCelsius}`)
+        // console.log(`isCelcius is ${isCelsius}`)
 
         if (isCelsius === false) {
             setCelcius('');
