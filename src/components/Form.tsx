@@ -74,14 +74,14 @@ function Form() {
 
     function updateWeatherImg(weatherImg: string) {
         setWeatherImg(weatherImg);
-        setWeatherURL(`http://openweathermap.org/img/wn/${weatherImg}@2x.png`);
+        setWeatherURL(`https://openweathermap.org/img/wn/${weatherImg}@2x.png`);
     }
 
     async function getAPI(place: string) {
         const apiKey = '95fee964ced32e496e2999d4b411aa78';
 
         try {
-            const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${apiKey}`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${apiKey}`);
             const data = await response.json();
             console.log(data.main.temp - 273.15);
             updateMessage(`In ${data.name}, ${data.sys.country} it is `);
