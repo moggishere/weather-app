@@ -4,15 +4,20 @@
     gap: 1em;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
+    background-color: white;
     margin: 1em;
     padding: 1.5em;
     padding-top: 0.2em;
     padding-bottom: 0.2em;
+    border: 0.2em;
+    border-style: solid;
     border-radius: 1.8rem;
+    border-color: black;
+    box-shadow: 0.35em 0.4em;
 }
 
 .highlighted-text {
     font-weight: bold;
     transition: 0.5s;
+    font-size: 1.2em;
 }

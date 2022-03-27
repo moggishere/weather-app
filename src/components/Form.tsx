@@ -84,7 +84,7 @@ function Form() {
             const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${apiKey}`);
             const data = await response.json();
             console.log(data.main.temp - 273.15);
-            updateMessage(`the temperature in ${data.name}, ${data.sys.country} is `);
+            updateMessage(`In ${data.name}, ${data.sys.country} it is `);
             updateWeatherImg(data.weather[0].icon);
             
             if (isCelsius === true) {
@@ -138,16 +138,16 @@ function Form() {
     return (
         <>
             <h1>Weather App</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='form-submit'>
                 <label htmlFor='city'>city name:</label>
                 <input id='city' type="text" name="city" value={input} onChange={(e: ChangeEvent<HTMLInputElement>) => updateInput(e)} />
-                <button type='submit'>get weather</button>
+                <button type='submit' className="weather-button">get weather</button>
             </form>
 
             <div className='showWeather'>
                 <span className='temperature'>
                     <h3>{message}</h3>
-                    <span>
+                    <span className="main-info">
                         <h3>{weather}</h3>
                         <img src={weatherURL} alt="weather" />
                         <h1>{temp}{notation}</h1>
@@ -162,8 +162,6 @@ function Form() {
                 </span>
 
             </div>
-
-            {/* <button>°C / °F</button> */}
 
             <div onClick={handleClickNotation}>
                 <ToggleButton />

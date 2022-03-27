@@ -1,15 +1,84 @@
+.body-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .body {
-    background-color: red;
-    width: 35em;
-    min-height: 50em;
+    background-color: hsl(0, 0%, 100%);
+    width: 25em;
+    min-height: 65em;
     border-radius: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
+    border: 0.2em;
+    border-style: solid;
+    border-radius: 1.8rem;
+    border-color: black;
+    box-shadow: 0.35em 0.4em;
+}
+
+.form-submit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1em;
+    padding: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: 0.2em;
+    border-style: solid;
+    border-radius: 1.8rem;
+    border-color: black;
+    box-shadow: 0.35em 0.4em;
+}
+
+.weather-button {
+    font-weight: bold;
+    margin: 1em;
+    padding: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: 0.2em;
+    border-style: solid;
+    border-radius: 1.8rem;
+    border-color: black;
+    box-shadow: 0.35em 0.4em;
+    transition: 0.3s;
+}
+
+.weather-button:hover {
+    background-color: hsl(0, 0%, 80%);
+    border: 0.3em;
+    border-style: solid;
+    transition: 1s;
+}
+
+.weather-button:active {
+    color: white;
+    background-color: hsl(0, 0%, 00%);
+    /* border: 0.5em; */
+    font-size: 0.75em;
+    border-style: solid;
+    transition: 0.4s;
+}
+
+#city {
+    border: 0.2em;
+    border-style: solid;
 }
 
 .temperature {
     text-align: center;
     transition: 1s;
+}
+
+.main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
