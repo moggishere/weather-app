@@ -74,7 +74,7 @@ function Form() {
 
     function updateWeatherImg(weatherImg: string) {
         setWeatherImg(weatherImg);
-        setWeatherURL(`http://openweathermap.org/img/wn/${weatherImg}@4x.png`);
+        setWeatherURL(`http://openweathermap.org/img/wn/${weatherImg}@2x.png`);
     }
 
     async function getAPI(place: string) {
@@ -146,19 +146,19 @@ function Form() {
 
             <div className='showWeather'>
                 <span className='temperature'>
-                    <h3>{message}</h3>
+                    <p>{message}</p>
                     <span className="main-info">
-                        <h3>{weather}</h3>
+                        <h5>{weather}</h5>
                         <img src={weatherURL} alt="weather" />
-                        <h1>{temp}{notation}</h1>
-                        <h3>min {minTemp}{notation} | max {maxTemp}{notation}</h3>
+                        <h2>{temp}{notation}</h2>
+                        <h5>min {minTemp}{notation} | max {maxTemp}{notation}</h5>
                     </span>
 
 
                 </span>
                 <span className="temperature">
-                    <h3>feeling {feel}{notation}</h3>
-                    <h3> humidity {humidity}%</h3>
+                    <p>feeling {feel}{notation}</p>
+                    <p> humidity {humidity}%</p>
                 </span>
 
             </div>

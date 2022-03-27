@@ -3,12 +3,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    background-color: hsla(0, 0%, 100%, 0);
+    height: 100%;
+    width: 100%;
 }
 
 .body {
     background-color: hsl(0, 0%, 100%);
     width: 25em;
-    min-height: 65em;
+    /* min-height: 65em; */
+    min-height: 80%;
+    min-width: 20%;
     border-radius: 5%;
     display: flex;
     flex-direction: column;
@@ -24,7 +30,6 @@
 .form-submit {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     margin: 1em;
     padding: 1.5em;
     padding-top: 1em;
