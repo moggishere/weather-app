@@ -16,6 +16,9 @@ function Form() {
     const [maxTemp, setMaxTemp] = useState(0);
     const [weather, setWeather] = useState('');
 
+    const [weatherImg, setWeatherImg] = useState('');
+    const [weatherURL, setWeatherURL] = useState('');
+
     const [notation, setNotation] = useState('°C');
     const [isCelsius, setIsCelcius] = useState(true);
     const [message, setMessage] = useState('');
@@ -69,6 +72,11 @@ function Form() {
         setWeather(weather);
     }
 
+    function updateWeatherImg(weatherImg: string) {
+        setWeatherImg(weatherImg);
+        setWeatherURL(`http://openweathermap.org/img/wn/${weatherImg}@4x.png`);
+    }
+
     async function getAPI(place: string) {
         const apiKey = '95fee964ced32e496e2999d4b411aa78';
 
@@ -76,9 +84,11 @@ function Form() {
             const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${apiKey}`);
             const data = await response.json();
             console.log(data.main.temp - 273.15);
-
+            updateMessage(`the temperature in ${data.name}, ${data.sys.country} is `);
+            updateWeatherImg(data.weather[0].icon);
+            
             if (isCelsius === true) {
-                updateMessage(`the temperature in ${data.name}, ${data.sys.country} is `);
+
                 updateTemp(Math.round(celsiusConvert(data.main.temp)));
 
                 updateHumidity(data.main.humidity);
@@ -88,7 +98,6 @@ function Form() {
 
                 updateWeather(`${data.weather[0].main}`);
             } else if (isCelsius === false) {
-                updateMessage(`the temperature in ${data.name}, ${data.sys.country} is `);
                 updateTemp(Math.round(fahrenheitConvert(data.main.temp)));
 
                 updateHumidity(data.main.humidity);
@@ -140,6 +149,7 @@ function Form() {
                     <h3>{message}</h3>
                     <span>
                         <h3>{weather}</h3>
+                        <img src={weatherURL} alt="weather" />
                         <h1>{temp}{notation}</h1>
                         <h3>min {minTemp}{notation} | max {maxTemp}{notation}</h3>
                     </span>
